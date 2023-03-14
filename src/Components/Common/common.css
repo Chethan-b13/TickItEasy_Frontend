@@ -1,0 +1,90 @@
+:root {
+    --primaryColor: #ECE5F0;
+    --domColor: #E98A15;
+    --secondary: #59114D;
+    --dom2: #012622;
+    --secondary2: #003B36;
+  }
+
+.headerContainer{
+    width: 100%;
+    height: 80vh;
+}
+
+.navBar{
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15rem;
+}
+
+.navBar .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.navBar .logo img{
+    width: 2rem;
+}
+
+.navBar .logo h2{
+    color: var(--secondary);
+}
+
+.navigationItems{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.navigationItems li a{
+    font-size: 20px;
+    color: var(--secondary);
+    font-weight: 600;
+    transition: all .1s ease-in-out;
+}
+
+.navigationItems li a:hover{
+    color: #E98A15;
+}
+
+.carousel{
+    margin: 5rem 0;
+}
+
+.slick-slide{
+    margin: 0px 2rem;
+}
+
+.slick-list{
+    margin: 0 10rem;
+}
+
+
+.slick-slide img{
+    width: 100%;
+    object-fit: cover;
+    margin: 0 -2rem;
+    border-radius: 1rem;
+    box-shadow: -4px 11px 16px 6px #939393;
+}
+
+.arrow_next{
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    font-size: 2rem;
+}
+
+.arrow_prev{
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    font-size: 2rem;
+}
