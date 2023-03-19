@@ -4,7 +4,7 @@ import '../../Assests/Styles/auth.css';
 import { Link } from 'react-router-dom';
 import { FaSignInAlt ,FaFacebookF,FaEye} from 'react-icons/fa';
 import {FcGoogle} from 'react-icons/fc'
-import ill from '../../Assests/Images/agree.svg'
+import illustration from '../../Assests/Images/login.svg'
 
 const Signup = () => {
   const [userRole, setuserRole] = useState()
@@ -53,14 +53,17 @@ const SignupForm = () => {
           <input type="email" name="email" id='email' placeholder='Email Address' />
           <div className="passwordItems">
             <input type="password" name="password1" id="password1" placeholder='Password'/>
-            <a onClick={()=>showPassword('password1')}><FaEye/></a>
+            <a href='' onClick={()=>showPassword('password1')}><FaEye/></a>
           </div>
           <div className="passwordItems">
             <input type="password" name="password2" id="password2" placeholder='Confirm Password'/>
-            <a onClick={()=>showPassword('password2')}><FaEye/></a>
+            <a href='' onClick={()=>showPassword('password2')}><FaEye/></a>
           </div>
           <button type="submit">Signup</button>
         </form>
+        <div className="crop">
+            <img src={illustration} alt="" />
+        </div>
       </div>
     </div>
   )
