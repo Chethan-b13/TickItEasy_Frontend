@@ -53,6 +53,7 @@
 
 .formContainer{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -124,4 +125,16 @@
     cursor: pointer;
     top: 10px;
     z-index: 100;
+}
+
+.formContainer .crop{
+    overflow: hidden;
+    position: absolute;
+    bottom: 0px;
+    left: -8rem;
+    height: 271.7px;
+}
+
+.formContainer img{
+    width: 20rem;
 }
