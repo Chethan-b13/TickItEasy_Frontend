@@ -1,10 +1,5 @@
-:root {
-    --primaryColor: #ECE5F0;
-    --domColor: #E98A15;
-    --secondary: #59114D;
-    --dom2: #012622;
-    --secondary2: #003B36;
-  }
+@import 'root.css';
+
 
 .headerContainer{
     width: 100%;
@@ -17,7 +12,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15rem;
+    position: relative;
+    z-index: 100;
 }
 
 .navBar .logo{
@@ -25,6 +21,8 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+    position: absolute;
+    left: 4rem;
 }
 
 .navBar .logo img{
@@ -41,6 +39,11 @@
     justify-content: center;
     align-items: center;
     gap: 3rem;
+}
+
+.rightItems{
+    position: absolute;
+    right: 4rem;
 }
 
 .navigationItems li a{
@@ -118,9 +121,9 @@
     background: var(--domColor);
 }
 
-.swiper-slide-active{
+/* .swiper-slide-active{
     margin-right: 0.7rem;
-}
+} */
 
 .arrow svg{
     font-size: 2rem;

@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
-import './common.css';
+import '../../Assests/Styles/common.css';
 
 const Carousel = () => {
     const images = [pic1, pic2, pic3, pic4, pic5];
@@ -32,7 +32,7 @@ const Carousel = () => {
                   {
                     rotate: 0,
                     stretch: 0,
-                    depth: 100,
+                    depth: 200,
                     modifier: 3.5,
                     slideShadows:false,
                   }
@@ -40,10 +40,10 @@ const Carousel = () => {
                 pagination={{el:'.swiperPagination', clickable: true }}
                 grabCursor={true}
                 centeredSlides={true}
-                speed={400}
+                speed={450}
                 loop
                 loopedSlides={2}
-                autoplay={{delay: 5000}}
+                loopadditionalslides={2}
               >
               {images.map((img,indx)=>{
                 return <SwiperSlide key={indx}><img width="350px" height={"250px"} src={img} alt={indx} /></SwiperSlide>

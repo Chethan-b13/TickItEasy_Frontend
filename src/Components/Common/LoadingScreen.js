@@ -1,9 +1,11 @@
 import React from 'react'
-import './common.css'
+import '../../Assests/Styles/common.css';
 
 const LoadingScreen = () => {
   return (
-    <div class="pre-loader"></div>
+    <div className='pre-loader'>
+      {/* <img src={loader} alt="" /> */}
+    </div>
   )
 }
 

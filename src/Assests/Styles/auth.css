@@ -1,0 +1,127 @@
+@import 'root.css';
+
+.Centered_Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.Centered_Container h1{
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    color: var(--secondary2);
+}
+
+.Centered_Container .buttons{
+    gap: 20px;
+    display: flex;
+    padding: 25px;
+}
+
+.Centered_Container button{
+    padding: 10px;
+    border-radius: 1rem;
+    background: transparent;
+    color: var(--secondary2);
+    font-size: 15px;
+    font-weight: 600;
+    border: 3px solid var(--domColor);
+    transition: all .2s ease-in-out;
+}
+
+.Centered_Container button:hover{
+    background: var(--domColor);
+    color: var(--primaryColor);
+}
+
+
+.loginContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--secondary2);
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    padding: 40px;
+    gap: 1rem;
+    background: white;
+    border-radius: 3rem;
+    box-shadow: -13px 15px 20px #c5c5c5;
+}
+
+.formContainer span{
+    font-size: 25px;
+}
+
+.formContainer form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.SocialIcons{
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.SocialIcons h6{
+    background: var(--secondary2);
+    padding: 6px;
+    color: white;
+    border-radius: 5px;
+}
+
+.formContainer input{
+    color: var(--secondary2);
+    padding: 10px;
+    text-align: center;
+    border-radius: 25px;
+    border: 2px solid var(--secondary2);
+    font-size: 15px;
+    width: 20rem;
+    font-weight: 700;
+    transition: all .2s ease-in-out;
+}
+
+.formContainer input::placeholder{
+    color: #618684;
+}
+
+.formContainer input:focus{
+    scale: 1.03;
+    
+}
+
+.passwordItems{
+    position: relative;
+}
+
+.passwordItems a{
+    color: var(--secondary2);
+    position: absolute;
+    right: 15px;
+    border: none;
+    cursor: pointer;
+    top: 10px;
+    z-index: 100;
+}
