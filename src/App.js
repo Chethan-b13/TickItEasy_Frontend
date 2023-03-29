@@ -3,7 +3,7 @@ import {BrowserRouter as Router , Routes, Route} from 'react-router-dom';
 import Home from './Components/Pages/Home';
 import { useEffect, useState } from 'react';
 import LoadingScreen from './Components/Common/LoadingScreen';
-import Signup from './Components/Pages/Signup';
+import UserAccountForm, { LoginPage } from './Components/Pages/UserAccountForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,7 +16,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='/signup' element={<Signup />}/>
+          <Route path='/signup' element={<UserAccountForm />}/>
+          <Route path='/login' element={<LoginPage />}/>
           <Route path='*' element={<h1>404$ Page Not Found</h1>}/>
         </Routes>
       </Router>
