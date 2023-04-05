@@ -77,6 +77,12 @@
     gap: 1rem;
 }
 
+form p{
+    font-size: 12px;
+    color: red;
+    font-weight: 700;
+}
+
 .SocialIcons{
     display: flex;
     font-size: 25px;
