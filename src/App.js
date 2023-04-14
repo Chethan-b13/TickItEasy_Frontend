@@ -3,7 +3,7 @@ import {BrowserRouter as Router , Routes, Route} from 'react-router-dom';
 import Home from './Components/Pages/Home';
 import { useEffect, useState } from 'react';
 import LoadingScreen from './Components/Common/LoadingScreen';
-import UserAccountForm, { LoginPage } from './Components/Pages/UserAccountForm';
+import UserAccountForm, { LoginPage } from './Components/Pages/Auth/UserAccountForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
