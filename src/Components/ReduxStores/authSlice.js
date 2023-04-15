@@ -44,13 +44,13 @@ export const login = (email,password) => async(dispatch)=>{
             access_token: response.data.access,
             refresh_token: response.data.refresh
         }
-        console.log(token);
         localStorage.setItem('access_token',response.data.access);
         localStorage.setItem('refresh_token',response.data.refresh);
         dispatch(authSuccess(token))
     } catch (error) {
         dispatch(authFail());
-        throw error;
+        console.log(error); 
+        throw error
     }
 }
 

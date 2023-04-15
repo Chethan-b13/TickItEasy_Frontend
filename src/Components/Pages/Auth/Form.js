@@ -6,8 +6,10 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import illustration from '../../../Assests/Images/login.svg'
 import { FaSignInAlt ,FaFacebookF,FaEye , FaEyeSlash} from 'react-icons/fa';
 import { AlreadyMemberOrNot } from './UserAccountForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../ReduxStores/authSlice';
+import axios from 'axios';
+import { BASE_URL } from '../../../apiConfig';
 
 
 const formContext = createContext();
@@ -24,22 +26,39 @@ const SignupSchema = yup.object().shape({
 })
 
 export const UserAuthForm = (props) => {
-
     const dispatch = useDispatch();
-    
+    const [Custom_message, setCustom_message] = useState(null)
     let schema;
+
+    const isAuthenticated = useSelector((state)=>state.auth.isAuthenticated)
+
     {props.name==='Signup'? schema = SignupSchema : schema = LoginSchema}
     const {register , handleSubmit, formState:{errors}} = useForm({
       resolver: yupResolver(schema),
     });
     const onSubmit = async (data) => {
       if (props.name === 'Signup'){
-        console.log(data);
+        const {email,password1,password2} = data
+        try {
+          const response = await axios.post(`${BASE_URL}/auth/register/`,{email,password1,password2});
+          if (response.data?.Error){
+            setCustom_message(response.data?.Error)
+          }else{
+            setCustom_message(response.data?.Success)
+            window.location = '/login'
+          }
+        } catch (error) {
+          console.log("Api request Failed",error)
+        }
       }else{
         try {
           await dispatch(login(data.email,data.password))
           window.location = '/'
         } catch (error) {
+          console.log(isAuthenticated)
+          if (!isAuthenticated){
+            setCustom_message('Invalid email or password. Please try again.')
+          }
           throw error
         }
       }
@@ -55,7 +74,7 @@ export const UserAuthForm = (props) => {
             <h6>facebook <FaFacebookF /></h6>
           </div>
           <form onSubmit={handleSubmit(onSubmit)} method="post">
-            <p>{errors[Object.keys(errors)[0]]?.message}</p>
+            <p>{errors[Object.keys(errors)[0]]?.message || Custom_message }</p>
             <input type="email" id='email' placeholder='Email Address' {...register("email")} />
             
             {props.name==="Signup"
