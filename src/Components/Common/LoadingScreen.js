@@ -3,10 +3,14 @@ import '../../Assests/Styles/common.css';
 
 const LoadingScreen = () => {
   return (
-    <div className='pre-loader'>
-      {/* <img src={loader} alt="" /> */}
+    <div className="loadingBackground">
+        <div className="loading"></div>
     </div>
   )
+}
+
+export const LightLoadingScreen = () =>{
+  return <div className="loading"></div>
 }
 
 export default LoadingScreen
