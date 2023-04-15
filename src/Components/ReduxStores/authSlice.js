@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
-import { BASE_URL } from '../../apiConfig';
+import { BASE_URL } from '../../configs/apiConfig';
 
 const local_tokens = {
     access_token: localStorage.getItem('access_token'),

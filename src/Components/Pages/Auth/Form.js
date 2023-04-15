@@ -9,8 +9,8 @@ import { AlreadyMemberOrNot } from './UserAccountForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../ReduxStores/authSlice';
 import axios from 'axios';
-import { BASE_URL } from '../../../apiConfig';
-
+import { BASE_URL } from '../../../configs/apiConfig';
+import LoadingScreen from '../../Common/LoadingScreen';
 
 const formContext = createContext();
 
@@ -21,22 +21,22 @@ const LoginSchema = yup.object().shape({
                 
 const SignupSchema = yup.object().shape({
     email: yup.string().email().required("Email is a required!"),
-    password1: yup.string().min(8).max(12).required("Password is required!"),
-    password2: yup.string().oneOf([yup.ref('password1'),null],"Password did not match!").required(),
+    password1: yup.string().min(8,"Password must be greater than 8 characters!").max(12).required("Password is required!"),
+    password2: yup.string().oneOf([yup.ref('password1'),null],"Password did not match!").required("Confirm Your Password!"),
 })
 
 export const UserAuthForm = (props) => {
     const dispatch = useDispatch();
     const [Custom_message, setCustom_message] = useState(null)
     let schema;
-
+    const [loading, setloading] = useState(false)
     const isAuthenticated = useSelector((state)=>state.auth.isAuthenticated)
-
     {props.name==='Signup'? schema = SignupSchema : schema = LoginSchema}
     const {register , handleSubmit, formState:{errors}} = useForm({
       resolver: yupResolver(schema),
     });
     const onSubmit = async (data) => {
+      setloading(true)
       if (props.name === 'Signup'){
         const {email,password1,password2} = data
         try {
@@ -49,6 +49,8 @@ export const UserAuthForm = (props) => {
           }
         } catch (error) {
           console.log("Api request Failed",error)
+        }finally{
+          setloading(false)
         }
       }else{
         try {
@@ -60,8 +62,11 @@ export const UserAuthForm = (props) => {
             setCustom_message('Invalid email or password. Please try again.')
           }
           throw error
+        } finally {
+          setloading(false)
         }
       }
+      
     }
   
     return (
@@ -98,6 +103,7 @@ export const UserAuthForm = (props) => {
           </div>
         </div>
       </div>
+      {loading && <LoadingScreen />}
       </formContext.Provider>
     )
   }
