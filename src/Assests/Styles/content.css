@@ -1,0 +1,49 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4rem;
+}
+
+.line{
+    border: 1px solid rgb(145, 135, 151);
+    width: 100%;
+}
+
+.column3{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.col{
+    display: flex;
+    width: 30%;
+    height: 10rem;
+    margin: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1rem
+}
+
+.col svg{
+    font-size: 3rem;
+    color: var(--secondary);
+    animation: flip 4s infinite;
+}
+
+@keyframes flip {
+    0%{
+       transform: rotate3d(0, 1, 0, 0deg);
+    }
+    100%{
+       transform: rotate3d(0, 1, 0, 360deg);
+    }
+}
+
+.col h3{
+    color: var(--secondary);
+}

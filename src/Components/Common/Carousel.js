@@ -12,9 +12,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import '../../Assests/Styles/common.css';
+import { Link } from 'react-router-dom'
 
 const Carousel = () => {
     const images = [pic1, pic2, pic3, pic4, pic5];
+
+
     return (
               <>
                 <Swiper
@@ -46,7 +49,13 @@ const Carousel = () => {
                 loopadditionalslides={2}
               >
               {images.map((img,indx)=>{
-                return <SwiperSlide key={indx}><img width="350px" height={"250px"} src={img} alt={indx} /></SwiperSlide>
+                return <SwiperSlide key={indx}>
+                        <img width="350px" height={"250px"} src={img} alt={indx} />
+                        <div className="imgContent">
+                          <p className='date'>15th April</p>
+                          <Link to="#" className='bookButton' >Book Now</Link>
+                        </div>
+                      </SwiperSlide>
               })}
               </Swiper>
               <div className="swiper-controller">

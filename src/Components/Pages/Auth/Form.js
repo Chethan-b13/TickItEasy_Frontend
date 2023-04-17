@@ -32,9 +32,11 @@ export const UserAuthForm = (props) => {
     const [loading, setloading] = useState(false)
     const isAuthenticated = useSelector((state)=>state.auth.isAuthenticated)
     {props.name==='Signup'? schema = SignupSchema : schema = LoginSchema}
+    
     const {register , handleSubmit, formState:{errors}} = useForm({
       resolver: yupResolver(schema),
     });
+
     const onSubmit = async (data) => {
       setloading(true)
       if (props.name === 'Signup'){
