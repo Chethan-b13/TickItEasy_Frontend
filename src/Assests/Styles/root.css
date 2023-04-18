@@ -1,7 +1,8 @@
 :root {
     --primaryColor: #ECE5F0;
     --domColor: #E98A15;
-    --secondary: #59114D;
+    /* --secondary: #59114D; */
+    --secondary: #000000;
     --dom2: #012622;
     --secondary2: #003B36;
   }

@@ -30,6 +30,11 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.loading = false;
         },
+        refresh_token:(state,action)=>{
+            state.token = action.payload;
+            state.isAuthenticated = true;
+            state.loading = false;
+        }
     },
 });
 
@@ -46,6 +51,25 @@ export const login = (email,password) => async(dispatch)=>{
         }
         localStorage.setItem('access_token',response.data.access);
         localStorage.setItem('refresh_token',response.data.refresh);
+        dispatch(authSuccess(token))
+    } catch (error) {
+        dispatch(authFail());
+        console.log(error); 
+        throw error
+    }
+}
+
+export const refresh_token = (refresh_token)=> async (dispatch)=>{
+    dispatch(authStart());
+    try {
+        console.log("Inside reducer token refresh");
+        const response = await axios.post(`${BASE_URL}/auth/token/refresh/`,{refresh:refresh_token})
+        const token = {
+            access_token: response.data.access,
+            refresh_token: refresh_token
+        }
+        localStorage.setItem('access_token',response.data.access);
+        localStorage.setItem('refresh_token',refresh_token);
         dispatch(authSuccess(token))
     } catch (error) {
         dispatch(authFail());
