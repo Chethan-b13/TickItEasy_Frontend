@@ -22,8 +22,8 @@ const Motives = () => {
         <div className="line"></div>
         <div className="column3">
             {
-                icons.map((icon)=>{
-                    return <div className="col">
+                icons.map((icon,indx)=>{
+                    return <div key={indx} className="col">
                                 {icon.ic}
                                 <h3>{icon.title}</h3>
                             </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import pic1 from '../../Assests/Images/pic1.jpg'
 import pic2 from '../../Assests/Images/pic2.jpg'
 import pic3 from '../../Assests/Images/pic3.jpg'
@@ -12,12 +12,32 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import '../../Assests/Styles/common.css';
+import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
+import { FetchAllEvents } from '../Pages/Event/EventApis'
+import { useSelector } from "react-redux"
 
 const Carousel = () => {
+    const [events, setevents] = useState(null)
     const images = [pic1, pic2, pic3, pic4, pic5];
-
-
+    const [imgLoaded, setimgLoaded] = useState(false);
+    const dispatch = useDispatch()
+    let counter = 0;
+    const auth_details = useSelector(state => ({
+      isAuthenticated: state.auth.isAuthenticated,
+      token: state.auth.token
+    }));
+    const handleLoad = (event)=>{
+      counter++;
+      if(counter===4){
+        setimgLoaded(true);
+      }
+    }
+    console.log(events);
+    useEffect(() => {
+      FetchAllEvents(auth_details,dispatch,setevents);
+    }, [])
+    
     return (
               <>
                 <Swiper
@@ -48,15 +68,28 @@ const Carousel = () => {
                 loopedSlides={2}
                 loopadditionalslides={2}
               >
-              {images.map((img,indx)=>{
+              {events ? events?.slice(0,5).map((event,indx)=>{
                 return <SwiperSlide key={indx}>
-                        <img width="350px" height={"250px"} src={img} alt={indx} />
-                        <div className="imgContent">
-                          <p className='date'>15th April</p>
-                          <Link to="#" className='bookButton' >Book Now</Link>
-                        </div>
+                        {
+                            <>
+                            <div style={{display:imgLoaded?"block":"none"}}>
+                              <img key={indx}  width="350px" height={"250px"} src={event.image} alt={indx} onLoad={handleLoad}/>
+                              <div className="imgContent">
+                                <p className='date'>{event.start_time.split("T")[0]}</p>
+                                <Link to="#" className='bookButton' >Book Now</Link>
+                              </div>
+                            </div>
+                            <div id='imgloading' style={{display:imgLoaded?"none":"block"}}></div>
+                            </>
+                        }
                       </SwiperSlide>
-              })}
+              })
+            : images.map((img,i)=>{
+              return <SwiperSlide key={i}>
+                        <div id='imgloading' style={{display:imgLoaded?"none":"block"}}></div>
+                  </SwiperSlide>
+            })
+            }
               </Swiper>
               <div className="swiper-controller">
                 <PrevArrow />
