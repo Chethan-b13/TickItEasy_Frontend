@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { storage } from '../../../configs/firestoreConfig';
 import '../../../Assests/Styles/event.css';
 import '../../../Assests/Styles/auth.css';
 import Navbar from '../../Common/Navbar'
 import LoadingScreen from '../../Common/LoadingScreen';
+import {MdOutlineCreditScore} from 'react-icons/md'
+import {RxCrossCircled} from 'react-icons/rx'
 
 
 const CreateEvent = () => {
+    const fileInputRef = useRef(null);
     const [imageUrl, setImageUrl] = useState("");
     const [loading, setloading] = useState(false)
     const handleFileUpload = async (event)=>{
         setloading(true)
+        // Checking if a file is already uploaded
+        if(imageUrl){
+            const storageRef = storage.refFromURL(imageUrl);
+            await storageRef.delete();
+            console.log("duplicate image");
+        }
         const folderPath = "EventImages";
         const file = event.target.files[0];
         const storageRef = storage.ref();
@@ -18,63 +27,56 @@ const CreateEvent = () => {
         const snapshot = await fileRef.put(file);
         const downloadURL = await snapshot.ref.getDownloadURL();
         setImageUrl(downloadURL);
-        console.log(downloadURL);
         setloading(false)
     }
+
+    const imgDeleteHandler = async (e) => {
+        try {
+            setloading(true)
+            e.preventDefault()
+            fileInputRef.current.value = ''
+            const storageRef = storage.refFromURL(imageUrl);
+            await storageRef.delete();
+            setImageUrl("")
+            console.log('Image deleted successfully!');
+            setloading(false)
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+
     return (
         <div>
             <Navbar />
             <div>
                 <div className="eventContainer">
-                    <h1>Hello Lets Create Event</h1>
+                    <h1>Create an Event <MdOutlineCreditScore /> </h1>
                     <form action="" method="post">
                         <div className="row row1">
-                            <div className="inp">
-                                <label htmlFor="title">Title:</label>
-                                <input className='inputArea' type="text" name="" id="title" placeholder='Enter Text'/>
-                            </div>
-                            <div className="inp">
-                                <label htmlFor="image">Poster:</label>
-                                <input className='inputArea' type="file" name="images" id="image" onChange={handleFileUpload}/>
-                                {imageUrl && <img src={imageUrl} alt="Uploaded file" />}
-                            </div>
+                            <InputField name='Title' id='title' type='text' extras={null} />
+                            <InputField name='Poster' id='image' type='file' extras={{image:imageUrl,handler:handleFileUpload,imgDeleteHandler:imgDeleteHandler,fileInputRef:fileInputRef}}/>
                         </div>
                         <div className="row row2">
                             <label htmlFor="desc">Description:</label>
-                            <textarea className='inputArea' name="" id="desc" cols="25" rows="15"></textarea>
+                            <textarea className='inputArea' name="" id="desc" cols="20" rows="10"></textarea>
                         </div>
                         
                         <div className="row row3">
-                            <label htmlFor="mode">Mode: </label>
-                            <select className='inputArea' name="" id="mode">
-                                <option value="Offline" defaultChecked>Offline</option>
-                                <option value="Online">Online</option>
-                            </select>
-                            <label htmlFor="venue">Venue: </label>
-                            <select className='inputArea' name="" id="venue">
-                                <option value="Bangalore" defaultChecked>Bangalore</option>
-                                <option value="Chennai">Chennai</option>
-                            </select>
-                            <label htmlFor="genre">Genre: </label>
-                            <select className='inputArea' name="" id="genre">
-                                <option value="Comedy" defaultChecked>Comedy</option>
-                                <option value="Drama">Drama</option>
-                            </select>
-                            {/* <div className="inp"> */}
-                                <label htmlFor="seats">Number of Seats</label>
-                                <input className='inputArea' type="number" name="" id="seats" min={1} defaultValue={1} style={{width:"10%"}}/>
-                            {/* </div> */}
+                            <OptionField name='Mode' id='mode' options={['Offline','Online']} />
+                            <OptionField name='Venue' id='venue' options={['Bangalore','Chennai']} />
+                            <OptionField name='Genre' id='genre' options={['Comedy','Drama']} />
+                            <label htmlFor="seats">Number of Seats: </label>
+                            <input className='inputArea' type="number" name="" id="seats" min={1} defaultValue={1} style={{width:"10%"}}/>
                         </div>
 
                         <div className="row row4">
-                            <div className="inp">
-                                <label htmlFor="startdate">Start Date&Time: </label>
-                                <input className='inputArea' type="datetime-local" name="" id="startdate" />
-                            </div>
-                            <div className="inp">
-                                <label htmlFor="enddate">End Date&Time: </label>
-                                <input className='inputArea' type="datetime-local" name="" id="enddate" />
-                            </div>
+                            <InputField id='startdate' name='Start Date&Time' type="datetime-local" />
+                            <InputField id='enddate' name='End Date&Time' type="datetime-local" />
+                        </div>
+                        <div className="row row5">
+                            <button type="submit">Create</button>
                         </div>
                     </form>
                 </div>
@@ -84,6 +86,43 @@ const CreateEvent = () => {
             }
         </div>
     )
+}
+
+const InputField = (props) =>{
+    
+    return(
+
+        <div className="inp">
+            <label htmlFor={props.id}>{props.name}:</label>
+            <input className='inputArea' ref={props.extras?.fileInputRef} type={props.type} name="" id={props.id} onChange={ props.extras?.handler && props.extras?.handler }/>
+            { props.type==='file' && (
+                props.extras?.image && (
+                <div>
+                    <button onClick={props.extras.imgDeleteHandler}><RxCrossCircled /></button>
+                    <img src={props.extras?.image} alt="Uploaded file" />
+                </div>
+                )
+                
+                ) }
+
+        </div>
+
+    );
+}
+
+const OptionField = (props) => {
+    return(
+        <>
+            <label htmlFor={props.id}>{props.name}: </label>
+            <select className='inputArea' name={props.id} id={props.id}>
+                {
+                    props.options.map((opt,idx)=>{
+                        return <option key={idx} value={opt} defaultChecked>{opt}</option>
+                    })
+                }
+            </select>
+        </>
+    );
 }
 
 export default CreateEvent
