@@ -1,0 +1,97 @@
+.eventContainer{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 4rem;
+    padding: 40px;
+    gap: 1rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: -13px 15px 20px #c5c5c5;
+}   
+
+.eventContainer form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 18px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.inputArea{
+    color: var(--secondary2);
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid var(--secondary2);
+    font-size: 15px;
+    font-weight: 700;
+    transition: all .2s ease-in-out;
+}
+
+.inputArea::-webkit-file-upload-button{
+    border-radius: 5px;
+    color:var(--secondary2);
+
+}
+
+input[type=file]{
+    border:none
+}
+
+
+.eventContainer form input{
+    width: 60%;
+}
+
+.inputArea::placeholder{
+    color: #618684;
+}
+
+.inputArea:focus{
+    scale: 1.03;
+    
+}
+
+.eventContainer form textarea{
+    width: 80%;
+}
+
+.inp{
+    width: 50%;
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.inp img{
+    width: 15%;
+    position: absolute;
+    right: 20%;
+    bottom: 0px;
+    border-radius: 10%;
+}
+
+option{
+    padding: 2px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 1rem;
+}

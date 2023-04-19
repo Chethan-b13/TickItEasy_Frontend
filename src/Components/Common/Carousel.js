@@ -12,6 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import '../../Assests/Styles/common.css';
+import '../../Assests/Styles/carousel.css';
 import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 import { FetchAllEvents } from '../Pages/Event/EventApis'
@@ -75,7 +76,7 @@ const Carousel = () => {
                             <div style={{display:imgLoaded?"block":"none"}}>
                               <img key={indx}  width="350px" height={"250px"} src={event.image} alt={indx} onLoad={handleLoad}/>
                               <div className="imgContent">
-                                <p className='date'>{event.start_time.split("T")[0]}</p>
+                                <h1 className='date'>{event.start_time.split("T")[0]}</h1>
                                 <Link to="#" className='bookButton' >Book Now</Link>
                               </div>
                             </div>
