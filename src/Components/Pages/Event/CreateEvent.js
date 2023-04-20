@@ -12,6 +12,9 @@ const CreateEvent = () => {
     const fileInputRef = useRef(null);
     const [imageUrl, setImageUrl] = useState("");
     const [loading, setloading] = useState(false)
+
+    const [page, setpage] = useState(1)
+
     const handleFileUpload = async (event)=>{
         setloading(true)
         // Checking if a file is already uploaded
@@ -53,31 +56,49 @@ const CreateEvent = () => {
             <div>
                 <div className="eventContainer">
                     <h1>Create an Event <MdOutlineCreditScore /> </h1>
+                    <div className='paginationbuttons row5'>
+                        {
+                            [1,2,3,4,5].map((num)=>{
+                                return <PaginationButton page={page} number={num} setpage={setpage} />
+                            })
+                        }
+                    </div>
+                    <div className="line"></div>
                     <form action="" method="post">
-                        <div className="row row1">
-                            <InputField name='Title' id='title' type='text' extras={null} />
-                            <InputField name='Poster' id='image' type='file' extras={{image:imageUrl,handler:handleFileUpload,imgDeleteHandler:imgDeleteHandler,fileInputRef:fileInputRef}}/>
-                        </div>
-                        <div className="row row2">
-                            <label htmlFor="desc">Description:</label>
-                            <textarea className='inputArea' name="" id="desc" cols="20" rows="10"></textarea>
-                        </div>
-                        
-                        <div className="row row3">
-                            <OptionField name='Mode' id='mode' options={['Offline','Online']} />
-                            <OptionField name='Venue' id='venue' options={['Bangalore','Chennai']} />
-                            <OptionField name='Genre' id='genre' options={['Comedy','Drama']} />
-                            <label htmlFor="seats">Number of Seats: </label>
-                            <input className='inputArea' type="number" name="" id="seats" min={1} defaultValue={1} style={{width:"10%"}}/>
-                        </div>
+                        {page===1 && 
+                            <div className="row row1">
+                                <InputField name='Title' id='title' type='text' extras={null} />
+                                <InputField name='Poster' id='image' type='file' extras={{image:imageUrl,handler:handleFileUpload,imgDeleteHandler:imgDeleteHandler,fileInputRef:fileInputRef}}/>
+                            </div>
+                        }
 
-                        <div className="row row4">
-                            <InputField id='startdate' name='Start Date&Time' type="datetime-local" />
-                            <InputField id='enddate' name='End Date&Time' type="datetime-local" />
-                        </div>
-                        <div className="row row5">
-                            <button type="submit">Create</button>
-                        </div>
+                        {page===2 && 
+                            <div className="row row2">
+                                <label htmlFor="desc">Description:</label>
+                                <textarea className='inputArea' name="" id="desc" cols="20" rows="10"></textarea>
+                            </div>}
+                        
+                        { page===3 &&
+                            <div className="row row3">
+                                <OptionField name='Mode' id='mode' options={['Offline','Online']} />
+                                <OptionField name='Venue' id='venue' options={['Bangalore','Chennai']} />
+                                <OptionField name='Genre' id='genre' options={['Comedy','Drama']} />
+                                <label htmlFor="seats">Number of Seats: </label>
+                                <input className='inputArea' type="number" name="" id="seats" min={1} defaultValue={1} style={{width:"10%"}}/>
+                            </div>
+                        }
+
+                        { page===4 &&
+                            <div className="row row4">
+                                <InputField id='startdate' name='Start Date&Time' type="datetime-local" />
+                                <InputField id='enddate' name='End Date&Time' type="datetime-local" />
+                            </div>
+                        }
+                        {page===5 &&
+                            <div className="row row5">
+                                <button type="submit">Create</button>
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
@@ -123,6 +144,10 @@ const OptionField = (props) => {
             </select>
         </>
     );
+}
+
+const PaginationButton = (props)=>{
+    return <button className={props.page===props.number?'buttonactive':""} onClick={()=>props.setpage(props.number)} >Step {props.number}</button>
 }
 
 export default CreateEvent

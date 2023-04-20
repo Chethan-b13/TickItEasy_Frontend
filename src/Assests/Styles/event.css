@@ -27,6 +27,7 @@
 .row{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
@@ -97,6 +98,13 @@ option{
     border-radius: 1rem;
 }
 
+.paginationbuttons .buttonactive{
+    scale: 1.1;
+    background: var(--domColor);
+    color: var(--primaryColor);
+}
+
+
 
 .row5 button{
     width: 10%;
@@ -159,3 +167,23 @@ option{
 .row1 button:hover{
     scale: 1.1;
 }
+
+.paginationbuttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.paginationbuttons button{
+    border-top: none;
+    border-bottom: none;
+    border-radius: 5px;
+    transition: all .2s ease-in-out;
+}
+
+.row3{
+    flex-direction: row;
+}
+
