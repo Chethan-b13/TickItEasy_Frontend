@@ -1,6 +1,5 @@
 import axios from "axios"
 import { BASE_URL } from "../../../configs/apiConfig"
-import { refresh_token } from "../../ReduxStores/authSlice"
 
 export const FetchAllEvents = async (dispatch,setevents)=>{
         try {

@@ -57,8 +57,59 @@
 }
 
 .navigationItems li a:hover{
-    color: #E98A15;
+    color: var(--domColor);
 }
+
+.rightItems li a:hover i{
+    border-color: var(--domColor);
+    scale: 1.2;
+}
+
+.arrowdown{
+    border: solid var(--secondary);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    margin: 6px 0;
+    padding: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: all .1s ease-in-out;
+}
+
+/* ################## Drop Down #############  */
+
+.dropDownContainer{
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    animation: dropdown .2s;
+}
+
+@keyframes dropdown {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.dropdown{
+    display: block;
+    border: 2px solid var(--domColor);
+    border-radius: 20px;
+    padding: 5px 25px;
+}
+
+.dropdown li{
+    margin: 5px 0;
+}
+
+.optionLine{
+    border: 1px solid var(--domColor);
+}
+
+/* #################################################### */
 
 /* ################# Loading Screen ############################ */
 .loadingBackground{
@@ -90,7 +141,6 @@
 }
 
 /* ################################################### */
-
 
 /* ################### Img Loader ########################## */
 #imgloading{

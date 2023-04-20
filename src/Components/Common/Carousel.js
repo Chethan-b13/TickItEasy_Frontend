@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import pic1 from '../../Assests/Images/pic1.jpg'
 import pic2 from '../../Assests/Images/pic2.jpg'
 import pic3 from '../../Assests/Images/pic3.jpg'
@@ -13,16 +13,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import '../../Assests/Styles/common.css';
 import '../../Assests/Styles/carousel.css';
-import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
-import { FetchAllEvents } from '../Pages/Event/EventApis'
 import {format} from 'date-fns'
+import { HomeData } from '../Pages/Home'
 
 const Carousel = () => {
-    const [events, setevents] = useState(null)
+    const {events,User} = useContext(HomeData);
     const images = [pic1, pic2, pic3, pic4, pic5];
     const [imgLoaded, setimgLoaded] = useState(false);
-    const dispatch = useDispatch()
     let counter = 0;
     const handleLoad = (event)=>{
       counter++;
@@ -30,9 +28,7 @@ const Carousel = () => {
         setimgLoaded(true);
       }
     }
-    useEffect(() => {
-      FetchAllEvents(dispatch,setevents);
-    }, [])
+
     
     return (
               <>
