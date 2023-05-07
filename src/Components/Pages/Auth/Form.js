@@ -41,8 +41,9 @@ export const UserAuthForm = (props) => {
       setloading(true)
       if (props.name === 'Signup'){
         const {email,password1,password2} = data
+        const role = props.role
         try {
-          const response = await axios.post(`${BASE_URL}/auth/register/`,{email,password1,password2});
+          const response = await axios.post(`${BASE_URL}/auth/register/`,{email,password1,password2,role});
           if (response.data?.Error){
             setCustom_message(response.data?.Error)
           }else{

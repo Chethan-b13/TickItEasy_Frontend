@@ -26,12 +26,12 @@ const UserAccountForm = () => {
           ?<div className="Centered_Container">
               <h1>TELL US WHAT YOU'RE LOOKING FOR ?</h1>
               <div className="buttons">
-                  <button onClick={()=>setuserRole("Host")}>EventHost</button>
+                  <button onClick={()=>setuserRole("Organizer")}>EventHost</button>
                   <button onClick={()=>setuserRole("Customer")}>Book Tickets</button>
               </div>
               <AlreadyMemberOrNot message='Already a Member ?' redirectUrl='/login' name='Login' />
           </div>
-          : <UserAuthForm name='Signup' />
+          : <UserAuthForm name='Signup' role={userRole} />
         }
     </div>
   )

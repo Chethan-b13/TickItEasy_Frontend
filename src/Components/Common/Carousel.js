@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import pic1 from '../../Assests/Images/pic1.jpg'
 import pic2 from '../../Assests/Images/pic2.jpg'
 import pic3 from '../../Assests/Images/pic3.jpg'
@@ -12,31 +12,23 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import '../../Assests/Styles/common.css';
-import { useDispatch } from "react-redux"
+import '../../Assests/Styles/carousel.css';
 import { Link } from 'react-router-dom'
-import { FetchAllEvents } from '../Pages/Event/EventApis'
-import { useSelector } from "react-redux"
+import {format} from 'date-fns'
+import { HomeData } from '../Pages/Home'
 
 const Carousel = () => {
-    const [events, setevents] = useState(null)
+    const {events,User} = useContext(HomeData);
     const images = [pic1, pic2, pic3, pic4, pic5];
     const [imgLoaded, setimgLoaded] = useState(false);
-    const dispatch = useDispatch()
     let counter = 0;
-    const auth_details = useSelector(state => ({
-      isAuthenticated: state.auth.isAuthenticated,
-      token: state.auth.token
-    }));
     const handleLoad = (event)=>{
       counter++;
       if(counter===4){
         setimgLoaded(true);
       }
     }
-    console.log(events);
-    useEffect(() => {
-      FetchAllEvents(auth_details,dispatch,setevents);
-    }, [])
+
     
     return (
               <>
@@ -70,12 +62,13 @@ const Carousel = () => {
               >
               {events ? events?.slice(0,5).map((event,indx)=>{
                 return <SwiperSlide key={indx}>
-                        {
+                        {   
                             <>
                             <div style={{display:imgLoaded?"block":"none"}}>
                               <img key={indx}  width="350px" height={"250px"} src={event.image} alt={indx} onLoad={handleLoad}/>
                               <div className="imgContent">
-                                <p className='date'>{event.start_time.split("T")[0]}</p>
+                                {/* <h1 className='date'>{event.start_time.split("T")[0]}</h1> */}
+                                <h1 className='date'>{format(new Date(event.start_time),"do MMMM yyyy")}</h1>
                                 <Link to="#" className='bookButton' >Book Now</Link>
                               </div>
                             </div>

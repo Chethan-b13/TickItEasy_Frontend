@@ -1,0 +1,189 @@
+.eventContainer{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 4rem;
+    padding: 40px;
+    gap: 1rem;
+    background: white;
+    color: var(--secondary2);
+    border-radius: 1rem;
+    box-shadow: -13px 15px 20px #c5c5c5;
+}   
+
+.eventContainer form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 18px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.inputArea{
+    color: var(--secondary2);
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid var(--secondary2);
+    font-size: 15px;
+    font-weight: 700;
+    transition: all .2s ease-in-out;
+}
+
+.inputArea::-webkit-file-upload-button{
+    border-radius: 5px;
+    color:var(--secondary2);
+
+}
+
+input[type=file]{
+    border:none
+}
+
+
+.eventContainer form input{
+    width: 60%;
+}
+
+.inputArea::placeholder{
+    color: #618684;
+}
+
+.inputArea:focus{
+    scale: 1.03;
+    
+}
+
+.eventContainer form textarea{
+    width: 80%;
+}
+
+.inp{
+    width: 50%;
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.inp img{
+    width: 15%;
+    position: absolute;
+    right: 20%;
+    bottom: 0px;
+    border-radius: 10%;
+}
+
+option{
+    padding: 2px;
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.paginationbuttons .buttonactive{
+    scale: 1.1;
+    background: var(--domColor);
+    color: var(--primaryColor);
+}
+
+
+
+.row5 button{
+    width: 10%;
+    padding: 10px;
+    border-radius: 1rem;
+    background: transparent;
+    color: var(--secondary2);
+    font-size: 15px;
+    font-weight: 600;
+    border: 3px solid var(--domColor);
+    transition: all .2s ease-in-out;
+}
+
+.row5 button:hover{
+    background: var(--domColor);
+    color: var(--primaryColor);
+}
+
+.eventContainer h1{
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.eventContainer h1 svg{
+    font-size: 30px;
+}
+
+.eventContainer h1::after{
+    content: ' ';
+    display: block;
+    color: var(--domColor);
+    border: 2px solid var(--domColor);
+    animation: line 3s alternate infinite;
+}
+
+@keyframes line {
+    0%{
+        /* width: 0%;
+        margin-left: 0%; */
+        margin: 0 50%;
+    }
+    100%{
+        /* width: 100%;
+        margin-left: 100%; */
+        margin: 0 0;
+    }
+}
+
+
+.row1 button{
+    border: none;
+    font-size: 25px;
+    color: var(--secondary2);
+    background: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.row1 button:hover{
+    scale: 1.1;
+}
+
+.paginationbuttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.paginationbuttons button{
+    border-top: none;
+    border-bottom: none;
+    border-radius: 5px;
+    transition: all .2s ease-in-out;
+}
+
+.row3{
+    flex-direction: row;
+}
+
