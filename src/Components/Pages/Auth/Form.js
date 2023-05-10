@@ -11,19 +11,9 @@ import { login } from '../../ReduxStores/authSlice';
 import axios from 'axios';
 import { BASE_URL } from '../../../configs/apiConfig';
 import LoadingScreen from '../../Common/LoadingScreen';
+import { LoginSchema, SignupSchema } from '../../Common/FormSchemas';
 
 const formContext = createContext();
-
-const LoginSchema = yup.object().shape({
-  email: yup.string().email().required("Email is a required!"),
-  password: yup.string().required("Password is required!"),
-})
-                
-const SignupSchema = yup.object().shape({
-    email: yup.string().email().required("Email is a required!"),
-    password1: yup.string().min(8,"Password must be greater than 8 characters!").max(12).required("Password is required!"),
-    password2: yup.string().oneOf([yup.ref('password1'),null],"Password did not match!").required("Confirm Your Password!"),
-})
 
 export const UserAuthForm = (props) => {
     const dispatch = useDispatch();
