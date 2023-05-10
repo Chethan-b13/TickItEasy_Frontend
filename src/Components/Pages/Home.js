@@ -30,7 +30,7 @@ const Home = () => {
       setuser(response.data)
     } catch (error) {
       if (error.response?.data.code==="token_not_valid"){
-            console.log("Haha Token Expired",auth_info.token.refresh_token);
+            // console.log("Haha Token Expired",auth_info.token.refresh_token);
             await dispatch(refresh_token(auth_info.token.refresh_token))
             window.location = '/'; 
         }else{
@@ -45,7 +45,7 @@ const Home = () => {
     if(auth_info.isAuthenticated){
       getuserDetails();
     }
-  }, [])
+  }, [auth_info.isAuthenticated])
   
 
   return (

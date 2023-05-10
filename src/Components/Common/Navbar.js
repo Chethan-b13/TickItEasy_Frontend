@@ -11,7 +11,6 @@ import { HomeData } from '../Pages/Home';
 const Navbar = () => {
   const homedata = useContext(HomeData);
   const [showDropDown, setshowDropDown] = useState(false);
-
   const dropDown= ()=>{
     setshowDropDown(!showDropDown);
   }
@@ -46,7 +45,6 @@ const DropDownMenu = (props)=>{
     dispatch(logout());
     window.location = '/';
   }
-  console.log(props.user);
   return (
       <div className="dropDownContainer" style={{display:show?'block':'none'}}>
           <ul className='navigationItems dropdown'>
