@@ -69,7 +69,7 @@ const Carousel = () => {
                               <div className="imgContent">
                                 {/* <h1 className='date'>{event.start_time.split("T")[0]}</h1> */}
                                 <h1 className='date'>{format(new Date(event.start_time),"do MMMM yyyy")}</h1>
-                                <Link to="#" className='bookButton' >Book Now</Link>
+                                <Link to={`/event/${event.slug}`} className='bookButton' >Book Now</Link>
                               </div>
                             </div>
                             <div id='imgloading' style={{display:imgLoaded?"none":"block"}}></div>

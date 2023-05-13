@@ -23,7 +23,7 @@
     display: flex;
     width: 30%;
     height: 10rem;
-    margin: 15px;
+    margin: 15px 0px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@
 .card{
     background-color: white;
     position: relative;
-    width: 100%;
+    width: 90%;
     height: 330px;
     border-radius: 5px;
     box-shadow: 9px 8px 16px #00000042;

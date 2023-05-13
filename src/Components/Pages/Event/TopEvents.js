@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {MdOutlineEventAvailable} from 'react-icons/md';
 import { HomeData } from '../Home';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom'
 
 
 const TopEvents = () => {
@@ -30,7 +31,7 @@ const Card = (props) => {
   return (
     <div className="card">
       <img src={props.event.image} alt="" />
-      <button className='button'>BUY</button>
+      <Link to={`/event/${props.event.slug}`} className='button'>BUY</Link>
       <div className="details">
         {
           props.event.name.length > 30 ?

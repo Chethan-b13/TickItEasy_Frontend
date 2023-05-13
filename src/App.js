@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import LightLoadingScreen  from './Components/Common/LoadingScreen';
 import UserAccountForm, { LoginPage } from './Components/Pages/Auth/UserAccountForm';
 import CreateEvent from './Components/Pages/Event/CreateEvent';
+import EventDetail from './Components/Pages/Event/EventDetail';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,6 +25,7 @@ function App() {
           <Route path='/signup' element={<UserAccountForm />}/>
           <Route path='/login' element={<LoginPage />}/>
           <Route path='/event' element={<CreateEvent />}/>
+          <Route path='/event/:slug' element={<EventDetail />}/>
           <Route path='*' element={<h1>404$ Page Not Found</h1>}/>
         </Routes>
       </Router>

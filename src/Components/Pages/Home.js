@@ -34,9 +34,8 @@ const Home = () => {
             await dispatch(refresh_token(auth_info.token.refresh_token))
             window.location = '/'; 
         }else{
-            console.log(error);
+          throw error
         }
-      throw error
     }
   }
 
