@@ -9,6 +9,10 @@ import {RxCrossCircled} from 'react-icons/rx';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { CreateEventSchema } from '../../Common/FormSchemas';
+import axios from 'axios';
+import { BASE_URL } from '../../../configs/apiConfig';
+import { useDispatch, useSelector } from 'react-redux';
+import { refresh_token } from '../../ReduxStores/authSlice';
 
 
 const eventContext = createContext();
@@ -16,8 +20,11 @@ const eventContext = createContext();
 const CreateEvent = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [loading, setloading] = useState(false)
+    const [page, setpage] = useState(1);
+    const [custom_error, setcustom_error] = useState(null);
 
-    const [page, setpage] = useState(1)
+    const auth_info = useSelector(state => state.auth.token)
+    const dispatch = useDispatch()
 
     const { register, handleSubmit, formState:{errors} } = useForm({
         resolver: yupResolver(CreateEventSchema),
@@ -60,10 +67,37 @@ const CreateEvent = () => {
         }
     }
 
-    const onSubmit = (data) => {
-
-        data['image'] = imageUrl
-        console.log(data);
+    const onSubmit = async (data) => {
+        setloading(true)
+        try {
+            data['image'] = imageUrl
+            data['name'] = data['title']
+            delete data['title'];
+            data['start_time'] = new Date(data['start_time']).toISOString().slice(0, -5);;
+            data['end_time'] = new Date(data['end_time']).toISOString().slice(0, -5);;
+            const res = await axios.post(`${BASE_URL}/events/`,data,{
+                headers:{
+                'Authorization': 'Bearer ' + auth_info.access_token
+                }
+            })
+            if(res.status===201){
+                setcustom_error("Event Created SuccessFully");
+                window.location = '/'; 
+            }else{
+                setcustom_error("Something went Wrong!");
+            }
+        } catch (error) {
+            if (error.response?.data.code==="token_not_valid"){
+                // console.log("Haha Token Expired",auth_info.token.refresh_token);
+                await dispatch(refresh_token(auth_info.refresh_token))
+                window.location = '/event'; 
+            }else{
+                setcustom_error("Something went Wrong!");
+                throw error
+            }  
+        }finally{
+            setloading(false)
+        }
     }
 
 
@@ -86,7 +120,7 @@ const CreateEvent = () => {
                         <div className="line"></div>
                         {errors[Object.keys(errors)[0]] && 
                         <div className="error">
-                            {<p>{errors[Object.keys(errors)[0]]?.message }</p>}
+                            {<p>{errors[Object.keys(errors)[0]]?.message || custom_error }</p>}
                         </div>
                         }
                         <form onSubmit={handleSubmit(onSubmit)} method="post">
@@ -94,35 +128,33 @@ const CreateEvent = () => {
                                 <div className="row row1">
                                     <InputField name='Title' id='title' type='text' extras={null} />
                                     <InputField id='price' name='Price Per Ticket' type="number" default={1} />
-                                    {
-                                        !imageUrl && 
-                                        <InputField name='Poster' id='image' type='file' extras={{image:imageUrl,handler:handleFileUpload,imgDeleteHandler:imgDeleteHandler}}/>
-                                    }
+
+                                    <InputField name='Poster' id='image' type='file' extras={{image:imageUrl,handler:handleFileUpload,imgDeleteHandler:imgDeleteHandler}}/>
                                     
                                 </div>
                             {/* } */}
 
                             {/* {page===2 &&  */}
                                 <div className="row row2">
-                                    <label htmlFor="desc">Description:</label>
-                                    <textarea className='inputArea' id="desc" cols="20" rows="10" {...register("desc")}></textarea>
+                                    <label htmlFor="description">Description:</label>
+                                    <textarea className='inputArea' id="description" cols="20" rows="10" {...register("description")}></textarea>
                                 </div>
                                 {/* } */}
                             
                             {/* { page===3 && */}
                                 <div className="row row3">
                                     <OptionField name='Mode' id='mode' options={['Offline','Online']} />
-                                    <OptionField name='Venue' id='venue' options={['Bangalore','Chennai']}  />
-                                    <OptionField name='Genre' id='genre' options={['Comedy','Drama']} />
-                                    <label htmlFor="seats">Number of Seats: </label>
-                                    <input className='inputArea' type="number" id="seats" min={1} defaultValue={1} style={{width:"10%"}} {...register("seats")}/>
+                                    <OptionField name='Venue' id='venue' options={['Bangalore','Chennai','Mumbai','Kolkata']}  />
+                                    <OptionField name='Genre' id='genre' options={['Event','Comedy','theater&art','Webinar','WorkShop','CollegeEvent']} />
+                                    <label htmlFor="number_of_seats">Number of Seats: </label>
+                                    <input className='inputArea' type="number" id="number_of_seats" min={1} defaultValue={1} style={{width:"10%"}} {...register("number_of_seats")}/>
                                 </div>
                             {/* } */}
 
                             {/* { page===4 && */}
                                 <div className="row row4">
-                                    <InputField id='startdate' name='Starts at' type="datetime-local" default={new Date().toISOString().slice(0, 16)} />
-                                    <InputField id='enddate' name='Ends at' type="datetime-local" default={new Date().toISOString().slice(0, 16)} />
+                                    <InputField id='start_time' name='Starts at' type="datetime-local" default={new Date().toISOString().slice(0, 16)} />
+                                    <InputField id='end_time' name='Ends at' type="datetime-local" default={new Date().toISOString().slice(0, 16)} />
                                 </div>
                             {/* } */}
                             {/* {page===5 && */}

@@ -26,12 +26,12 @@ export const CreateEventSchema = yup.object().shape({
         .required('Price is required')  
         .min(1, 'Price cannot be negative')
         .max(100000, 'Price should not exceed 100000'),
-    desc: yup.string().required('Description is required'),
-    seats: yup.number().required('Number of seats is required').integer('Number of seats should be an integer').min(20,"Event Should have atleast 20 Seats"),
+    description: yup.string().required('Description is required'),
+    number_of_seats: yup.number().required('Number of seats is required').integer('Number of seats should be an integer').min(20,"Event Should have atleast 20 Seats"),
     mode: yup.string().required('Mode is required'),
     venue: yup.string().required('Venue is required'),
     genre: yup.string().required('Genre is required'),
-    startdate: yup.date().required("Please Specify the Event Start Date & Time"),
-    enddate: yup.date().required("Please Specify the Event End Date & Time")
+    start_time: yup.date().required("Please Specify the Event Start Date & Time"),
+    end_time: yup.date().required("Please Specify the Event End Date & Time")
 });
 
