@@ -12,7 +12,7 @@ const TopEvents = () => {
         <h1><MdOutlineEventAvailable/> Top Events</h1>
         <div className="column3">
           {
-            events?.slice(5,).map((event,indx)=>{
+            events?.map((event,indx)=>{
               return (
                 <div key={indx} style={{height:'auto'}} className="col">
                   <Card event={event}/>
