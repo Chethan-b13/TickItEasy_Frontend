@@ -7,6 +7,7 @@ import { BASE_URL } from '../../configs/apiConfig'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { refresh_token } from '../ReduxStores/authSlice'
+import Footer from '../Common/Footer'
 
 export const HomeData = createContext()
 
@@ -53,6 +54,7 @@ const Home = () => {
             <Header />
             <Motives />
             <TopEvents />
+            <Footer />
         </HomeData.Provider>
     </div>
   )

@@ -1,0 +1,36 @@
+.filtersContainer{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filtersContainer .filterRow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.filtersContainer .filterRow h3{
+    color: gray;
+}
+
+.filtersContainer .filterRow .filterChips{
+    padding: 5px 20px;
+    border-radius: 15px;
+    /* background: crimson;
+    color: white; */
+    border: 1px solid var(--secondary_purple);
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.filtersContainer .filterRow .filterChips:hover{
+    color: white;
+    background: var(--secondary_purple);
+}
+
+.filterSortOptions{
+    background: transparent;
+}

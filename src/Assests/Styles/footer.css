@@ -1,0 +1,45 @@
+.footerContainer{
+    background: var(--dom2);
+    color: white;
+    padding: 2rem 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footerContainer .logo{
+    display: flex;
+    gap: 5px;
+}
+
+.footerContainer .logo img{
+    width: 2rem;
+}
+
+.footerContainer .logo h2{
+    color: white;
+}
+
+.footerContainer h1{
+    font-size: 21px;
+}
+
+.footerContainer p{
+    font-size: 13px;
+    line-height: 150%;
+}
+
+.footerContainer .flexNavigators{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footerContainer .flexNavigators a{
+    color: white;
+    font-weight: 500;
+}
+
+.footerContainer .flexNavigators svg{
+    font-size: 21px;
+}

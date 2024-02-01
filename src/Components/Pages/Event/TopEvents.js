@@ -3,6 +3,7 @@ import {MdOutlineEventAvailable} from 'react-icons/md';
 import { HomeData } from '../Home';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom'
+import Filters from '../../Common/Filters';
 
 
 const TopEvents = () => {
@@ -10,6 +11,7 @@ const TopEvents = () => {
   return (
     <div className='Container'>
         <h1><MdOutlineEventAvailable/> Top Events</h1>
+        <Filters />
         <div className="column3">
           {
             events?.map((event,indx)=>{

@@ -11,6 +11,7 @@ import {RiHeartLine,RiHeartFill} from 'react-icons/ri';
 import { format } from 'date-fns';
 import {MdGroupWork,MdDateRange,MdOutlinePlace} from 'react-icons/md';
 import {IoIosWallet} from 'react-icons/io';
+import Footer from '../../Common/Footer'
 
 
 const EventDetail = () => {
@@ -60,6 +61,10 @@ const EventDetail = () => {
                 <div className="container">
                     <div className="rightContent">
                         <img src={event.image} alt={event.name} />
+                        <div className="description">
+                            <h1>About</h1>
+                            <p>{event.description}</p>
+                        </div>
                     </div>
                     <div className="leftContent">
                         <div className="card">
@@ -91,6 +96,7 @@ const EventDetail = () => {
                     </div>
                 </div>
             }
+            <Footer />
         </>
     )
 }
