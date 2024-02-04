@@ -21,13 +21,13 @@ const Navbar = () => {
           <h2>TickItEasy</h2>
         </Link>
         <ul className='navigationItems'>
-            <li><Link to=''>Events</Link></li>
-            <li><Link to=''>Contact</Link></li>
-            <li><Link to=''>About Us</Link></li>
-            <li><Link to=''>MyTickets</Link></li>
+            <li><Link to=''>Free Events</Link></li>
+            <li><Link to=''>Popular Events</Link></li>
+            <li><Link to=''>Today's Events</Link></li>
         </ul>
         <ul className='navigationItems rightItems'>
             {/* <li><Link to=''>SignUp</Link></li> */}
+            <li id='listEvent'><Link to='/create-event'>List your Event</Link></li>
             <li><Link to=''><FaSearch /></Link></li>
             {!homedata?.User 
             ?<li><Link to='/signup'><FaUserAlt /></Link></li>

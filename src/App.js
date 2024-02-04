@@ -24,7 +24,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/signup' element={<UserAccountForm />}/>
           <Route path='/login' element={<LoginPage />}/>
-          <Route path='/event' element={<CreateEvent />}/>
+          <Route path='/create-event' element={<CreateEvent />}/>
           <Route path='/event/:slug' element={<EventDetail />}/>
           <Route path='*' element={<h1>404$ Page Not Found</h1>}/>
         </Routes>

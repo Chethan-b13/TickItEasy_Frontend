@@ -132,6 +132,16 @@
     animation: rotate 1s infinite;
 }
 
+#listEvent{
+    padding: 5px;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+}
+
+#listEvent a{
+    font-size: 15px;
+}
+
 @keyframes rotate {
     0%{
         transform: rotate(0deg);

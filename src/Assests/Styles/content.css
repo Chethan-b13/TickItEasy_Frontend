@@ -57,6 +57,7 @@
     border-radius: 5px;
     box-shadow: 9px 8px 16px #00000042;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .Container h1{
