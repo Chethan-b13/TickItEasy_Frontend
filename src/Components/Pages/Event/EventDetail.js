@@ -51,7 +51,28 @@ const EventDetail = () => {
         
     }, [])
 
-    
+    const handleBookTickets = async ()=> {
+        try {
+            const res = await axios.post(`${BASE_URL}/events/book-ticket`,
+            {
+                num_tickets: 1,
+                booked_date_time: parseInt(+new Date() /1000),
+                event: event?.id,
+            },
+            {
+                headers:{
+                    'Authorization': 'Bearer ' + auth_info.access_token
+                }
+            })
+
+            if(res.status === 201){
+                console.log("Booked", res.data);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
@@ -90,7 +111,7 @@ const EventDetail = () => {
                             <div className="detail_col price">
                                 <IoIosWallet />
                                 <h3>₹{event.price}/- Onwards</h3>
-                                <Link  to={'#'} >BUY NOW</Link>
+                                <button onClick={handleBookTickets} >BUY NOW</button>
                             </div>
                         </div>
                     </div>

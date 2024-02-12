@@ -299,11 +299,20 @@ option{
     bottom: 5%;
 }
 
-.price a{
+.price button{
     color: var(--primaryColor);
     font-weight: 700;
     background: var(--domColor);
     padding: 8px;
     border-radius: 8px;
     margin-left: 2rem;
+    border: none;
+    transition: all .3s ease-in-out;
+    border: 1px solid var(--primaryColor);
+}
+
+.price button:hover{
+    background: var(--primaryColor);
+    color: var(--domColor);
+    border: 1px solid var(--domColor);
 }

@@ -26,8 +26,7 @@ const Navbar = () => {
             <li><Link to=''>Today's Events</Link></li>
         </ul>
         <ul className='navigationItems rightItems'>
-            {/* <li><Link to=''>SignUp</Link></li> */}
-            <li id='listEvent'><Link to='/create-event'>List your Event</Link></li>
+            <li id='listEvent'><Link to={homedata?.User ? '/create-event' : "/signup"}>List your Event</Link></li>
             <li><Link to=''><FaSearch /></Link></li>
             {!homedata?.User 
             ?<li><Link to='/signup'><FaUserAlt /></Link></li>
