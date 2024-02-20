@@ -1,0 +1,52 @@
+.snackbarContainer{
+    position: absolute;
+    background: var(--primaryColor);
+    overflow: hidden;
+    border-radius: 1rem;
+    bottom: 2rem;
+    left: 3rem;
+    width: 23vw;
+    box-shadow: 7px 8px 18px 0px #1616165e;
+}
+
+.snackbarContainer .snackbarText{
+    padding: 0 10px;
+}
+
+.snackbarContainer svg{
+    width: 4rem !important;
+}
+
+.snackbarContainer h3{
+    margin-right: 5px;
+    color: #d10c0c;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+    animation: typo .5s ease-in-out;
+}
+
+.vertical-loader{
+    height: 5px;
+    width: 100%;
+    background-color: #d10c0c;
+    border-radius: 5px;
+    animation: loaderAnimation 6s ease-in-out;
+}
+
+@keyframes typo {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes loaderAnimation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}

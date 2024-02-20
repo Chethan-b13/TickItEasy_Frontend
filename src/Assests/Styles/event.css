@@ -316,3 +316,12 @@ option{
     color: var(--domColor);
     border: 1px solid var(--domColor);
 }
+
+.ticketSize input{
+    border: none;
+    width: 40px;
+    background: transparent;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}

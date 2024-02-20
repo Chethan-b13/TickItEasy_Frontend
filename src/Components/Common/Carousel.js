@@ -1,20 +1,20 @@
+import { format } from 'date-fns'
 import React, { useContext, useState } from 'react'
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io"
+import { Link } from 'react-router-dom'
+import { EffectCoverflow, Navigation, Pagination } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import pic1 from '../../Assests/Images/pic1.jpg'
 import pic2 from '../../Assests/Images/pic2.jpg'
 import pic3 from '../../Assests/Images/pic3.jpg'
 import pic4 from '../../Assests/Images/pic4.jpg'
 import pic5 from '../../Assests/Images/pic5.jpg'
-import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from "react-icons/io";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCoverflow } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
-import '../../Assests/Styles/common.css';
-import '../../Assests/Styles/carousel.css';
-import { Link } from 'react-router-dom'
-import {format} from 'date-fns'
+import '../../Assests/Styles/carousel.css'
+import '../../Assests/Styles/common.css'
 import { HomeData } from '../Pages/Home'
 
 const Carousel = () => {

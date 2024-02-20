@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
+import { FaSearch, FaUserAlt } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import logo from '../../Assests/Images/tickets.png';
 import '../../Assests/Styles/common.css';
-import logo from '../../Assests/Images/tickets.png'
-import {Link} from 'react-router-dom';
-import {FaSearch, FaUserAlt} from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../ReduxStores/authSlice';
 import { HomeData } from '../Pages/Home';
+import { logout } from '../ReduxStores/authSlice';
 
 
 const Navbar = () => {

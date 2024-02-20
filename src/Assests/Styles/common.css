@@ -153,6 +153,12 @@
 
 /* ################################################### */
 
+.flexBox{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 /* ################### Img Loader ########################## */
 #imgloading{
     background-color: #6e6e6ede;

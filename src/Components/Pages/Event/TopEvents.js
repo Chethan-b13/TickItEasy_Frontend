@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import {MdOutlineEventAvailable} from 'react-icons/md';
-import { HomeData } from '../Home';
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { MdOutlineEventAvailable } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Filters from '../../Common/Filters';
+import { HomeData } from '../Home';
 
 
 const TopEvents = () => {
-  const {events,user} = useContext(HomeData);
+  const {events} = useContext(HomeData);
   return (
     <div className='Container'>
         <h1><MdOutlineEventAvailable/> Top Events</h1>
