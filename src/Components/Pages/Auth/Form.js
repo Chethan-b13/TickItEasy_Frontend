@@ -1,10 +1,10 @@
 import React,{createContext, useContext,useState} from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import {useForm} from 'react-hook-form';
-import * as yup from 'yup'
+// import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import illustration from '../../../Assests/Images/login.svg'
-import { FaSignInAlt ,FaFacebookF,FaEye , FaEyeSlash} from 'react-icons/fa';
+import { FaSignInAlt,FaEye , FaEyeSlash} from 'react-icons/fa';
 import { AlreadyMemberOrNot } from './UserAccountForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../ReduxStores/authSlice';
@@ -18,10 +18,9 @@ const formContext = createContext();
 export const UserAuthForm = (props) => {
     const dispatch = useDispatch();
     const [Custom_message, setCustom_message] = useState(null)
-    let schema;
+    let schema = props.name==='Signup'? SignupSchema : LoginSchema;
     const [loading, setloading] = useState(false)
     const isAuthenticated = useSelector((state)=>state.auth.isAuthenticated)
-    {props.name==='Signup'? schema = SignupSchema : schema = LoginSchema}
     
     const {register , handleSubmit, formState:{errors}} = useForm({
       resolver: yupResolver(schema),
@@ -69,7 +68,7 @@ export const UserAuthForm = (props) => {
           <h1>{props.name} <span><FaSignInAlt/></span> </h1>
           <div className="SocialIcons">
             <h6>Google <FcGoogle /></h6>
-            <h6>facebook <FaFacebookF /></h6>
+            {/* <h6>facebook <FaFacebookF /></h6> */}
           </div>
           <form onSubmit={handleSubmit(onSubmit)} method="post">
             <p>{errors[Object.keys(errors)[0]]?.message || Custom_message }</p>

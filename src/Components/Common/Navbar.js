@@ -1,21 +1,29 @@
 import React, { useContext, useState } from 'react';
-import { FaSearch, FaUserAlt } from 'react-icons/fa';
+import { FaHamburger, FaSearch, FaUserAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../Assests/Images/tickets.png';
 import '../../Assests/Styles/common.css';
 import { HomeData } from '../Pages/Home';
 import { logout } from '../ReduxStores/authSlice';
+import { IoMdCloseCircle } from 'react-icons/io';
 
 
 const Navbar = () => {
   const homedata = useContext(HomeData);
   const [showDropDown, setshowDropDown] = useState(false);
+  const [menuOpen, setmenuOpen] = useState(false)
   const dropDown= ()=>{
     setshowDropDown(!showDropDown);
   }
   return (
-    <div className="navBar">
+    <>
+    <div className="menuIcon" style={{background: menuOpen && "none", backdropFilter:  menuOpen && "none"}} onClick={()=>{setmenuOpen(!menuOpen)}}>
+      {
+        !menuOpen ? <FaHamburger /> : <IoMdCloseCircle />
+      }
+    </div>
+    <div className={`navBar ${menuOpen ? "navBar__visible" : "navBar__hidden"}`}>
         <Link to='/' className="logo">
           <img src={logo} alt="tickit Easy" />
           <h2>TickItEasy</h2>
@@ -34,6 +42,7 @@ const Navbar = () => {
         </ul>
         <DropDownMenu show={showDropDown} user={homedata?.User} />
     </div>
+    </>
   )
 }
 

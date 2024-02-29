@@ -101,3 +101,10 @@
 .bookButton:hover{
     scale: 1.05;
 }
+
+
+@media screen and (max-width: 780px) {
+    .arrow svg{
+        font-size: 1.5rem;
+    }
+}

@@ -10,7 +10,7 @@
     height: 6rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     position: relative;
     z-index: 100;
 }
@@ -20,8 +20,8 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
-    position: absolute;
-    left: 4rem;
+    /* position: absolute;
+    left: 4rem; */
 }
 
 .navBar .logo img{
@@ -40,10 +40,10 @@
     gap: 3rem;
 }
 
-.rightItems{
+/* .rightItems{
     position: absolute;
     right: 4rem;
-}
+} */
 
 .rightItems svg{
     margin-top: 10px;
@@ -142,6 +142,10 @@
     font-size: 15px;
 }
 
+.menuIcon{
+    display: none;
+}
+
 @keyframes rotate {
     0%{
         transform: rotate(0deg);
@@ -174,5 +178,102 @@
     }
     100%{
         background-color: #6e6e6e4f;
+    }
+}
+
+
+@media screen and (max-width: 780px) {
+    .menuIcon{
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 8px 8px 20px 20px;
+        background: rgba(255, 255, 255, 0.23);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 999;
+        border-bottom-left-radius: 2rem;
+        transition: all .3s ease-in;
+    }
+    
+    .menuIcon svg{
+        font-size: 22px;
+        /* animation: popup .8s ease-in-out; */
+        
+    }
+    .navBar{
+        /* width: 80%; */
+        flex-direction: column;
+        gap: 1.5rem;
+        /* height: 100%; */
+        background: rgba(255, 255, 255, 0.23);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 2rem 0;
+        align-items: flex-end;
+        justify-content: flex-start;
+        transition: all .8s ease-in-out;
+        transform-origin: top right;
+        overflow: hidden;
+    }
+
+    .navBar__hidden{
+        width: 0;
+        height: 0;
+        border-bottom-left-radius: 50rem;
+    }
+
+    .navBar__visible{
+        width: 100%;
+        height: 100%;
+    }
+
+    .navBar > *{
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(0, 0, 0);
+        width: 100%;
+        opacity: 1;
+        /* animation: popup 1.2s ease-in-out; */
+    }
+
+    .navigationItems{
+        flex-direction: column;
+        gap: 10px;
+        /* align-items: flex-end; */
+    }
+
+    .navBar .rightItems{
+        flex-direction: row;
+    }
+
+    .navigationItems li a{
+        font-size: 15px;
+    }
+
+}
+
+@keyframes swipefromtop {
+    0%{
+        width: 0;
+        height: 0;
+        border-bottom-left-radius: 20rem;
+    }
+    100%{
+        width: 100%;
+        height: 100%;
+        border-bottom-left-radius: 0;
+    }
+}
+
+@keyframes popup {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }

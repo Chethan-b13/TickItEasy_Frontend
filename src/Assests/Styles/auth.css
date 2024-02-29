@@ -96,6 +96,7 @@ form p{
     padding: 6px;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .formContainer input{
