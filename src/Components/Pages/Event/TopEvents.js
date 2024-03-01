@@ -6,15 +6,15 @@ import Filters from '../../Common/Filters';
 import { HomeData } from '../Home';
 
 
-const TopEvents = () => {
+export const TopEvents = () => {
   const {events} = useContext(HomeData);
   return (
     <div className='Container'>
         <h1><MdOutlineEventAvailable/> Top Events</h1>
-        <Filters />
+        {/* <Filters /> */}
         <div className="column3">
           {
-            events?.map((event,indx)=>{
+            events?.slice(5,10)?.map((event,indx)=>{
               return (
                 <div key={indx} style={{height:'auto'}} className="col">
                   <Card event={event}/>
@@ -23,11 +23,12 @@ const TopEvents = () => {
             })
           }
         </div>
+        <Link to="all-events"><button className='commonButton'>View More</button></Link>
     </div>
   )
 }
 
-const Card = (props) => {
+export const Card = (props) => {
   const date = new Date(props.event.start_time);
   const formattedDate = format(date, "MMMM d | h:mm a");
   return (
@@ -50,5 +51,3 @@ const Card = (props) => {
     </div>
   );
 }
-
-export default TopEvents

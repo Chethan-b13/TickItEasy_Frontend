@@ -29,9 +29,9 @@ const Navbar = () => {
           <h2>TickItEasy</h2>
         </Link>
         <ul className='navigationItems'>
-            <li><Link to=''>Free Events</Link></li>
-            <li><Link to=''>Popular Events</Link></li>
-            <li><Link to=''>Today's Events</Link></li>
+            <li><Link to='/all-events'>Free Events</Link></li>
+            <li><Link to='/all-events'>Popular Events</Link></li>
+            <li><Link to='/all-events'>Today's Events</Link></li>
         </ul>
         <ul className='navigationItems rightItems'>
             <li id='listEvent'><Link to={homedata?.User ? '/create-event' : "/signup"}>List your Event</Link></li>

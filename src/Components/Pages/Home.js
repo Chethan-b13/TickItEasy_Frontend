@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import Header from '../Common/Header'
 import Motives from './Content/Motives'
-import TopEvents from './Event/TopEvents'
+import {TopEvents} from './Event/TopEvents'
 import { FetchAllEvents } from './Event/EventApis'
 import { BASE_URL } from '../../configs/apiConfig'
 import axios from 'axios'

@@ -60,7 +60,7 @@ const Carousel = () => {
                 loopedSlides={2}
                 loopadditionalslides={2}
               >
-              {events ? events?.slice(0,5).map((event,indx)=>{
+              {events ? events?.slice(0,5)?.map((event,indx)=>{
                 return <SwiperSlide key={indx}>
                         {   
                             <>

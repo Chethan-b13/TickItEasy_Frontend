@@ -34,3 +34,8 @@
 .filterSortOptions{
     background: transparent;
 }
+
+.selectedFilter{
+    color: white;
+    background: var(--secondary_purple);
+}
