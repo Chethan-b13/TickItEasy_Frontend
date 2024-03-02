@@ -36,15 +36,6 @@ const FilterEvents = () => {
 
 
     useEffect(() => {
-        // const search = window.location.search;
-        // const queryParams = new URLSearchParams(search);
-        // const timeParam = queryParams.get('time') || "";
-        // const sortbyParam = queryParams.get('sortby') || 'popularity';
-        // setfilters({
-        //     time: timeParam,
-        //     category: [],
-        //     sortby: sortbyParam
-        // });
 
         const applyCategoryFilter = (events) => {
           return filters?.category?.length > 0

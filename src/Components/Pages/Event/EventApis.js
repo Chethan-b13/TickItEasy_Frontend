@@ -3,7 +3,7 @@ import { BASE_URL } from "../../../configs/apiConfig"
 
 export const FetchAllEvents = async (dispatch,setevents)=>{
         try {
-            const response = await axios.get(`${BASE_URL}/events/`)
+            const response = await axios.get(`${BASE_URL}/events/all-events`)
             setevents(response.data);
             return response.data
         } catch (error) {

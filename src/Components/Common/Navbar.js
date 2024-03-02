@@ -28,13 +28,21 @@ const Navbar = () => {
           <img src={logo} alt="tickit Easy" />
           <h2>TickItEasy</h2>
         </Link>
-        <ul className='navigationItems'>
-            <li><Link to='/all-events'>Free Events</Link></li>
-            <li><Link to='/all-events'>Popular Events</Link></li>
-            <li><Link to='/all-events'>Today's Events</Link></li>
-        </ul>
+        {
+          homedata?.User?.role !== "Organizer" &&
+          <ul className='navigationItems'>
+              <li><Link to='/all-events'>Free Events</Link></li>
+              <li><Link to='/all-events'>Popular Events</Link></li>
+              <li><Link to='/all-events'>Today's Events</Link></li>
+          </ul>
+        }
         <ul className='navigationItems rightItems'>
-            <li id='listEvent'><Link to={homedata?.User ? '/create-event' : "/signup"}>List your Event</Link></li>
+            { 
+              homedata?.User ?
+              homedata?.User?.role === "Organizer" &&
+              <li id='listEvent'><Link to={'/create-event'}>List your Event</Link></li>
+              :<li id='listEvent'><Link to={"/signup"}>Signup</Link></li>
+            }
             <li><Link to=''><FaSearch /></Link></li>
             {!homedata?.User 
             ?<li><Link to='/signup'><FaUserAlt /></Link></li>

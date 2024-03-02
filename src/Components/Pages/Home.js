@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { refresh_token } from '../ReduxStores/authSlice'
 import Footer from '../Common/Footer'
+import MyEvents from './Event/MyEvents'
 
 export const HomeData = createContext()
 
@@ -51,9 +52,17 @@ const Home = () => {
   return (
     <div className="homeContainer">
         <HomeData.Provider value={homedata} >
-            <Header />
-            <Motives />
-            <TopEvents />
+            
+            {
+              !user || user?.role === "Customer" ?
+              <>
+              <Header />
+              <Motives />
+              <TopEvents />
+              </>
+              : <MyEvents />
+            }
+            
             <Footer />
         </HomeData.Provider>
     </div>

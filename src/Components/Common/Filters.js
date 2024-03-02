@@ -35,9 +35,15 @@ const Filters = ({filters, setfilters}) => {
                         return (
                             <div key={`${time}${key}`} className={`filterChips ${filters?.time === time && "selectedFilter"}`}
                                 onClick={()=>{
-                                    setfilters((prev)=>{
-                                        return {...prev, time: time }
-                                    })
+                                    if(filters?.time !== time){
+                                        setfilters((prev)=>{
+                                            return {...prev, time: time }
+                                        })
+                                    }else{
+                                        setfilters((prev)=>{
+                                            return {...prev, time: "" }
+                                        })
+                                    }
                                 }}
                             >
                                 <p>{time}</p>
