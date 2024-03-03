@@ -157,7 +157,9 @@ const EventDetail = () => {
                                 <div className="detail_col">
                                     <IoIosWallet />
                                     <h3>₹{event.price}/- Onwards</h3>
-                                    <button onClick={handleBookTickets} >BUY NOW</button>
+                                    <button onClick={handleBookTickets} disabled={event?.sold_out}>
+                                        {event?.sold_out ? "Sold Out" : "BUY NOW"}
+                                    </button>
                                 </div>
                             </div>
                         </div>

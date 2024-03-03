@@ -131,6 +131,15 @@
     background-color: var(--secondary_purple);
 }
 
+.card .editButton{
+    background: transparent !important;
+
+}
+
+.card .editButton svg{
+    font-size: 1.5rem;
+}
+
 @media screen and (max-width: 780px) {
     .Container{
         margin: auto;

@@ -1,9 +1,10 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
-import { MdOutlineEventAvailable } from 'react-icons/md';
+import { MdDelete, MdOutlineEventAvailable } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Filters from '../../Common/Filters';
 import { HomeData } from '../Home';
+import { FaPencilAlt } from 'react-icons/fa';
 
 
 export const TopEvents = () => {
@@ -31,10 +32,18 @@ export const TopEvents = () => {
 export const Card = (props) => {
   const date = new Date(props.event.start_time);
   const formattedDate = format(date, "MMMM d | h:mm a");
+  
+  console.log("mrow",props?.role);
+
   return (
     <div className="card">
       <img src={props.event.image} alt="" />
-      <Link to={`/event/${props.event.slug}`} className='button'>BUY</Link>
+      {
+        props?.role === "Organizer"
+        ?
+        <Link to={`/create-event`} className='button editButton'><FaPencilAlt /></Link>
+        :<Link to={`/event/${props.event.slug}`} className='button'>BUY</Link>
+      }
       <div className="details">
         {
           props.event.name.length > 30 ?
@@ -43,6 +52,10 @@ export const Card = (props) => {
         }
         <h5>{formattedDate}</h5>
         <h5>{props.event.venue}</h5>
+        {
+          props?.role === "Organizer" &&
+          <p id="ticketsSold"><span>{props?.event?.tickets_booked}</span> Tickets Sold</p>
+        }
         <div id="price">
           <p>₹{props.event.price}/- onwards</p>
         </div>

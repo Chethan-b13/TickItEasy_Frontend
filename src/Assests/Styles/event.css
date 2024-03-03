@@ -289,6 +289,10 @@ option{
     color: var(--dom2);
 }
 
+.card .detail_col button:disabled{
+    cursor: not-allowed;
+}
+
 .card .detail_col p{
     font-weight: 500;
     font-size: 15px;
@@ -324,4 +328,21 @@ option{
     font-size: 20px;
     text-align: center;
     font-weight: 600;
+}
+
+#ticketsSold{
+    font-size: 12px;
+    padding: 2px;
+    text-align: center;
+    /* background: green; */
+    border-radius: 8px;
+    color: white;
+    position: absolute;
+    top: 35%;
+    text-shadow: 2px 3px 7px black;
+}
+
+#ticketsSold span{
+
+    font-size: 3.5rem;
 }

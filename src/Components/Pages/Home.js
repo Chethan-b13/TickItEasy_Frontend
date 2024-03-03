@@ -47,24 +47,24 @@ const Home = () => {
       getuserDetails();
     }
   }, [auth_info.isAuthenticated])
-  
+
 
   return (
     <div className="homeContainer">
-        <HomeData.Provider value={homedata} >
             
+      <HomeData.Provider value={homedata} > 
             {
-              !user || user?.role === "Customer" ?
+              !auth_info.isAuthenticated || user?.role === "Customer" ?
               <>
-              <Header />
-              <Motives />
-              <TopEvents />
+                <Header />
+                <Motives />
+                <TopEvents />
               </>
-              : <MyEvents />
+              : user?.role === "Organizer" && <MyEvents />
             }
             
-            <Footer />
-        </HomeData.Provider>
+      </HomeData.Provider>
+      <Footer />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../Common/Navbar'
 import { MdOutlineEventAvailable } from 'react-icons/md'
 import { Card } from './TopEvents'
@@ -6,11 +6,13 @@ import axios from 'axios'
 import { BASE_URL } from '../../../configs/apiConfig'
 import LoadingScreen from '../../Common/LoadingScreen'
 import { useSelector } from 'react-redux'
+import { HomeData } from '../Home'
 
 const MyEvents = () => {
 
     const [FilteredEvents, setFilteredEvents] = useState(null);
     const [loading, setloading] = useState(false)
+    const homedata = useContext(HomeData);
 
     const auth_info = useSelector(state => state.auth.token)
 
@@ -47,7 +49,7 @@ const MyEvents = () => {
                 FilteredEvents?.map((event,indx)=>{
                 return (
                     <div key={indx} style={{height:'auto'}} className="col">
-                        <Card event={event}/>
+                        <Card event={event} myTickets={true} role={homedata?.User?.role}/>
                     </div>
                 )
                 })
