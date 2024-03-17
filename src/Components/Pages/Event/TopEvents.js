@@ -1,8 +1,7 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
-import { MdDelete, MdOutlineEventAvailable } from 'react-icons/md';
+import {  MdOutlineEventAvailable } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import Filters from '../../Common/Filters';
 import { HomeData } from '../Home';
 import { FaPencilAlt } from 'react-icons/fa';
 
@@ -32,8 +31,6 @@ export const TopEvents = () => {
 export const Card = (props) => {
   const date = new Date(props.event.start_time);
   const formattedDate = format(date, "MMMM d | h:mm a");
-  
-  console.log("mrow",props?.role);
 
   return (
     <div className="card">
@@ -41,7 +38,7 @@ export const Card = (props) => {
       {
         props?.role === "Organizer"
         ?
-        <Link to={`/create-event`} className='button editButton'><FaPencilAlt /></Link>
+        <Link to={`/edit-event/${props.event.slug}`} className='button editButton'><FaPencilAlt /></Link>
         :<Link to={`/event/${props.event.slug}`} className='button'>BUY</Link>
       }
       <div className="details">

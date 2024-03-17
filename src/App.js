@@ -7,6 +7,7 @@ import UserAccountForm, { LoginPage } from './Components/Pages/Auth/UserAccountF
 import CreateEvent from './Components/Pages/Event/CreateEvent';
 import EventDetail from './Components/Pages/Event/EventDetail';
 import FilterEvents from './Components/Pages/Event/FilterEvents';
+import EditEvent from './Components/Pages/Event/EditEvent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           <Route path='/signup' element={<UserAccountForm />}/>
           <Route path='/login' element={<LoginPage />}/>
           <Route path='/create-event' element={<CreateEvent />}/>
+          <Route path='/edit-event/:slug' element={<EditEvent />}/>
           <Route path='/event/:slug' element={<EventDetail />}/>
           <Route path='/all-events' element={<FilterEvents />}/>
           <Route path='*' element={<h1>404$ Page Not Found</h1>}/>

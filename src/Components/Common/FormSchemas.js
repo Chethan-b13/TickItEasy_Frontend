@@ -14,7 +14,7 @@ export const SignupSchema = yup.object().shape({
 })
 
 export const CreateEventSchema = yup.object().shape({
-    title: yup.string().required("Event Must have a title"),
+    name: yup.string().required("Event Must have a title"),
     image: yup
     .mixed()
     .required('Events with poster will have high audience intrest!')
